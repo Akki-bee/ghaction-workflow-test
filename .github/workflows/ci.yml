@@ -1,0 +1,35 @@
+name: CI Pipeline
+
+on:
+  push:
+    branches:
+      - main  # This will run the workflow on any push to the main branch
+  pull_request:
+    branches:
+      - main  # This will also run the workflow on any PR to the main branch
+
+jobs:
+  build:
+    runs-on: ubuntu-latest  # This runs on the latest Ubuntu version
+
+    steps:
+      # Step 1: Checkout the code
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # Step 2: Set up Node.js
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'  # Change this to the Node.js version you are using
+
+      # Step 3: Install dependencies
+      - name: Install dependencies
+        run: npm install
+
+      # Step 4: Run tests (this just echoes a success message for now)
+      - name: Run tests
+        run: |
+          echo "Tests are running..."
+          # Add a simple test like this for now
+          echo "Everything is working fine"
